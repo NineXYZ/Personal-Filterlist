@@ -1,0 +1,84 @@
+! Title: Sagi Filter
+! Expires: 6 hours
+! Homepage: https://github.com/NineXYZ/Personal-Filterlist
+! License: https://raw.githubusercontent.com/NineXYZ/Personal-Filterlist/main/LICENSE
+! General
+!! ##a[href^=""]
+##a[href^="https://www.amazon.com"]
+##a[href^="https://www.patreon.com"]
+##a[href^="https://linktr.ee/kotorihikari"]
+##a[href^="https://linktr.ee/linavermillion"]
+##a[href^="https://www.youtube.com"]
+##a[href^="https://www.facebook.com"]
+##a[href^="https://twitter.com"]
+/bg.jpg$important
+
+! 2022-08-13 https://beta.crunchyroll.com
+beta.crunchyroll.com##li.user-actions-item:nth-of-type(1)
+
+! 2022-08-21 https://pixiv.net
+pixiv.net##.yfl-ads
+pixiv.net##.sc-4nj1pr-5
+pixiv.net##.sc-1p2gd44-7
+pixiv.net##.kfknnl.iwVjrD.gOeyOH.fXmjBM.sc-1u16qqh-7.sc-10r3j8-0.sc-171jvz-3.sc-171jvz-1
+pixiv.net##a[href^="https://pixon.ads-pixiv.net"]
+||booth.pm$domain=pixiv.net
+pixiv.net##^script:has-text(QSI_S_ZN_5hF4My7Ad6VNNAi)
+booth.pm##+js(cookie-remover)
+
+! 2022-08-21 https://www3.animeflv.net
+animeflv.net##a[href^="https://www.facebook.com/armyanime.jp"]
+animeflv.net##a[href^="https://www.twitch.tv/kotorihikari/about"]
+animeflv.net##a[href^="https://bit.ly/3G5Jqbq"]
+animeflv.net##.Footer
+animeflv.net##^.dsq-count-scr
+animeflv.net##+js(cookie-remover)
+
+! 2022-08-21 https://tioanime.com
+tioanime.com##footer
+tioanime.com##a[href="https://tiohentai.com/"]
+tioanime.com##+js(cookie-remover)
+tioanime.com##^script:has-text(adConfig)
+
+! 2022-08-21 https://tiohentai.com
+tiohentai.com##footer
+tiohentai.com##a[href="https://tioanime.com"]
+tiohentai.com##+js(cookie-remover)
+
+! 2022-08-21 https://animefenix.com
+animefenix.com##.is-dark.hero.page-footer
+animefenix.com##+js(cookie-remover)
+||zeno.fm
+||muses.org
+
+! 2022-08-21 https://jkanime.net
+jkanime.net##.footer
+jkanime.net##.pl
+jkanime.net##+js(cookie-remover)
+
+! 2022-08-21 https://nhentai.com
+nhentai.com##.py-3.bg-dark
+nhentai.com##a[href^="hentaihaven.fun"]
+nhentai.com##.ads
+nhentai.com##.mb-4.justify-content-center.mx-auto.row
+nhentai.com##+js(cookie-remover)
+
+! 2022-08-21 https://genshin.gg
+genshin.gg##.wrapper-lb1
+genshin.gg##.wrapper-mpu1
+genshin.gg##.footer
+genshin.gg###primisPlayerContainerDiv
+genshin.gg##+js(cookie-remover)
+||primis.tech
+
+! 2022-08-21 https://paimon.moe
+paimon.moe##.md\:pb-24.flex-col.flex.py-8.md\:px-8.px-4.lg\:ml-64
+||plausible.paimon.moe
+
+! 2022-08-21 https://tower-of-fantasy-map.appsample.com
+tower-of-fantasy-map.appsample.com##.for-desktop
+tower-of-fantasy-map.appsample.com##.MapLayout_BottomAd
+
+! 2022-08-22 https://www.google.com
+www.google.com##.c93Gbe.o3j99
+
