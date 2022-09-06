@@ -27,8 +27,8 @@ pixiv.net##^script:has-text(QSI_S_ZN_5hF4My7Ad6VNNAi)
 booth.pm##+js(cookie-remover)
 
 ! 2022-08-21 https://www3.animeflv.net
-animeflv.net##a[href^="https://www.facebook.com/armyanime.jp"]
-animeflv.net##a[href^="https://www.twitch.tv/kotorihikari/about"]
+animeflv.net##a[href^="https://www.facebook.com"]
+animeflv.net##a[href^="https://www.twitch.tv"]
 animeflv.net##a[href^="https://bit.ly/3G5Jqbq"]
 animeflv.net##.Footer
 animeflv.net##^.dsq-count-scr
