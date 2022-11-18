@@ -8,7 +8,7 @@
 ##a[href^="https://www.patreon.com"]
 ##a[href^="https://linktr.ee/kotorihikari"]
 ##a[href^="https://linktr.ee/linavermillion"]
-##a[href^="https://www.youtube.com"]
+!##a[href^="https://www.youtube.com"]
 ##a[href^="https://www.facebook.com"]
 ##a[href^="https://twitter.com"]
 /bg.jpg$important
@@ -44,6 +44,7 @@ tioanime.com##^script:has-text(adConfig)
 tiohentai.com##footer
 tiohentai.com##a[href="https://tioanime.com"]
 tiohentai.com##+js(cookie-remover)
+tiohentai.com##^script:has-text(adConfig)
 
 ! 2022-08-21 https://animefenix.com
 animefenix.com##.is-dark.hero.page-footer
