@@ -94,6 +94,39 @@ tower-of-fantasy-map.appsample.com##.MapLayout_BottomAd
 ! 2022-08-22 https://www.google.com
 www.google.com##.c93Gbe.o3j99
 
-! 2023-03-14 https://www.google.com
+! 2023-03-14 https://www.9anime.to
 ||s7.addthis.com/js/300/addthis_widget.js^$domain=9anime.to
 ||whos.amung.us/pingjs/*^$domain=9anime.to
+
+! 2023-03-04 https://www.prydwen.gg
+www.prydwen.gg##.row.community
+www.prydwen.gg###about-prydwen
+www.prydwen.gg##.footer
+www.prydwen.gg##.content.container-xl > h2
+www.prydwen.gg##.row.justify-content-center.align-items-center.hero-section
+www.prydwen.gg##.dashboard-footer
+www.prydwen.gg##div.row.undefined.simple.section-header:nth-of-type(8)
+www.prydwen.gg##[href="/star-rail/watch-our-partners"]
+www.prydwen.gg##.left-links
+www.prydwen.gg##div.row.undefined.simple.section-header:nth-of-type(11)
+www.prydwen.gg##.archeland.countdown.banner
+www.prydwen.gg##div.row.undefined.simple.section-header:nth-of-type(3)
+www.prydwen.gg##div.row.undefined.simple.section-header:nth-of-type(9)
+www.prydwen.gg##.nav.ms-auto > [href="/eversoul/play-on-pc"]
+www.prydwen.gg##.eversoul-promo.banner
+www.prydwen.gg##div.fuse-ad-placeholder
+www.prydwen.gg##.nav.ms-auto > [href="/nikke/play-on-pc"]
+www.prydwen.gg##.nikke.play-on-pc.banner
+www.prydwen.gg##p:nth-of-type(14)
+www.prydwen.gg##h6:nth-of-type(7)
+www.prydwen.gg##p:nth-of-type(11)
+www.prydwen.gg##p:nth-of-type(12)
+www.prydwen.gg##ul:nth-of-type(2)
+www.prydwen.gg##p:nth-of-type(13)
+www.prydwen.gg##h6:nth-of-type(6)
+www.prydwen.gg##h6:nth-of-type(5)
+www.prydwen.gg##.page-content > .btn-primary.btn
+www.prydwen.gg##.nikke-promo.banner
+/^https?:\/\/cdn\.fuseplatform\.net\/publift\/tags\/2\/\d+\/fuse\.js$/$domain=prydwen.gg
+
+
