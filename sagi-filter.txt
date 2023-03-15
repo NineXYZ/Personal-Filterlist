@@ -41,10 +41,15 @@ animeflv.net##+js(cookie-remover)
 ! 2022-08-21 https://tioanime.com
 tioanime.com##footer
 tioanime.com##a[href="https://tiohentai.com/"]
-tioanime.com##script:contains(popMagic.init)
 ||tioanime.com^$cookie
 tioanime.com##+js(cookie-remover)
 tioanime.com##^script:has-text(adConfig)
+! 2023-03-02 https://tioanime.com
+tioanime.com##footer
+tioanime.com##.col-12.sidebar
+tioanime.com##.header
+tioanime.com##script[src="https://a.exdynsrv.com/ad-provider.js"]
+tioanime.com##script:contains(popMagic.init)
 
 ! 2022-08-21 https://tiohentai.com
 tiohentai.com##footer
