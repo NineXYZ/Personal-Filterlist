@@ -6,12 +6,10 @@
 !! ##a[href^=""]
 ##a[href^="https://www.amazon.com"]
 ##a[href^="https://www.patreon.com"]
-##a[href^="https://linktr.ee/kotorihikari"]
-##a[href^="https://linktr.ee/linavermillion"]
-!##a[href^="https://www.youtube.com"]
 ##a[href^="https://www.facebook.com"]
 ##a[href^="https://twitter.com"]
 /bg.jpg$important
+##script:contains(popMagic.init)
 
 ! 2022-08-13 https://beta.crunchyroll.com
 beta.crunchyroll.com##li.user-actions-item:nth-of-type(1)
@@ -29,14 +27,22 @@ booth.pm##+js(cookie-remover)
 ! 2022-08-21 https://www3.animeflv.net
 animeflv.net##a[href^="https://www.facebook.com"]
 animeflv.net##a[href^="https://www.twitch.tv"]
+animeflv.net##a[href^="https://linktr.ee/kotorihikari"]
+animeflv.net##a[href^="https://linktr.ee/linavermillion"]
 animeflv.net##a[href^="https://bit.ly/3G5Jqbq"]
 animeflv.net##.Footer
+www3.animeflv.net##a[href="https://www.facebook.com/armyanime.jp"] > img[src="https://animeflv.net/assets/animeflv/img/fb-flv.png"]
+www3.animeflv.net##a.lvbx[href="https://www.twitch.tv/kotorihikari"]
+www3.animeflv.net##a[href="https://www.twitch.tv/akitsuri/about"]
+www3.animeflv.net##a[href="https://bit.ly/3G5Jqbq"]
 animeflv.net##^.dsq-count-scr
 animeflv.net##+js(cookie-remover)
 
 ! 2022-08-21 https://tioanime.com
 tioanime.com##footer
 tioanime.com##a[href="https://tiohentai.com/"]
+tioanime.com##script:contains(popMagic.init)
+||tioanime.com^$cookie
 tioanime.com##+js(cookie-remover)
 tioanime.com##^script:has-text(adConfig)
 
@@ -83,3 +89,6 @@ tower-of-fantasy-map.appsample.com##.MapLayout_BottomAd
 ! 2022-08-22 https://www.google.com
 www.google.com##.c93Gbe.o3j99
 
+! 2023-03-14 https://www.google.com
+||s7.addthis.com/js/300/addthis_widget.js^$domain=9anime.to
+||whos.amung.us/pingjs/*^$domain=9anime.to
