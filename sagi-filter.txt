@@ -10,6 +10,7 @@
 ##a[href^="https://twitter.com"]
 /bg.jpg$important
 ##script:contains(popMagic.init)
+||a.exdynsrv.com/popunder1000.js^$script
 
 ! 2022-08-13 https://beta.crunchyroll.com
 beta.crunchyroll.com##li.user-actions-item:nth-of-type(1)
