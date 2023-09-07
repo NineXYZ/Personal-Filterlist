@@ -211,6 +211,8 @@
     function debugLog(message) {
         originalLog("[DEBUG] " + message);
     }
+    
+    debugLog("Scriptlet started execution.");
 
     // Function to remove elements based on a selector
     function removeElements(selector) {
@@ -218,7 +220,7 @@
         for (var i = 0; i < elements.length; i++) {
             elements[i].parentNode.removeChild(elements[i]);
         }
-        debugLog("Removed elements with selector: " + selector);
+        debugLog("Attempted to remove elements with selector: " + selector);
     }
 
     // Overriding specific functions to noop (no-operation)
@@ -227,41 +229,52 @@
     window._0x1571b1 = noopFunc;
     debugLog("Overrode console methods and window._0x1571b1 to noop.");
 
-    // Blocking or removing specific scripts and elements
-    var blockedScripts = [
-        'sharethis.com',
-        'coldvain.com',
-        'www.google.com/recaptcha/api.js',
-        'platform-api.sharethis.com',
-        'whos.amung.us'
-    ];
+    // Function to handle the main logic
+    function handleMainLogic() {
+        debugLog("Handling main logic after DOMContentLoaded.");
 
-    blockedScripts.forEach(function(src) {
-        removeElements('script[src*="' + src + '"]');
-    });
+        // Blocking or removing specific scripts and elements
+        var blockedScripts = [
+            'sharethis.com',
+            'coldvain.com',
+            'www.google.com/recaptcha/api.js',
+            'platform-api.sharethis.com',
+            'whos.amung.us'
+        ];
 
-    // Removing specific elements based on other attributes
-    var otherElements = [
-        'a[href="https://fmovies.to"]',
-        'a[href="https://mangafire.to/"]',
-        'a[href="https://zorohd.to/"]',
-        "meta[http-equiv='origin-trial']"
-    ];
+        blockedScripts.forEach(function(src) {
+            removeElements('script[src*="' + src + '"]');
+        });
 
-    otherElements.forEach(function(selector) {
-        removeElements(selector);
-    });
+        // Removing specific elements based on other attributes
+        var otherElements = [
+            'a[href="https://fmovies.to"]',
+            'a[href="https://mangafire.to/"]',
+            'a[href="https://zorohd.to/"]',
+            "meta[http-equiv='origin-trial']"
+        ];
 
-    // MutationObserver to watch for DOM changes and remove any newly added unwanted elements/scripts
-    var observer = new MutationObserver(function(mutations) {
-        blockedScripts.concat(otherElements).forEach(function(selector) {
+        otherElements.forEach(function(selector) {
             removeElements(selector);
         });
-        debugLog("MutationObserver triggered. Checked for unwanted elements/scripts.");
-    });
-    
-    observer.observe(document, {subtree: true, childList: true});
-    debugLog("Initialized MutationObserver.");
+
+        // MutationObserver to watch for DOM changes and remove any newly added unwanted elements/scripts
+        var observer = new MutationObserver(function(mutations) {
+            blockedScripts.concat(otherElements).forEach(function(selector) {
+                removeElements(selector);
+            });
+            debugLog("MutationObserver triggered. Checked for unwanted elements/scripts.");
+        });
+        
+        observer.observe(document, {subtree: true, childList: true});
+        debugLog("Initialized MutationObserver.");
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", handleMainLogic);
+    } else {
+        handleMainLogic();
+    }
 
     // Optional: Overriding Constructors (Aggressive and might break the website)
     window.HTMLScriptElement = noopFunc;
