@@ -203,80 +203,99 @@
 
 /// aniwave-strict-cleaner.js
 /// alias aniscl.js
+// Custom Scriptlet for aniwave.to
 (function() {
-    // Reference to the original console.log
-    var originalLog = console.log;
-
-    // Debugging section
-    function debugLog(message) {
-        originalLog("[DEBUG] " + message);
+    // Function to remove elements based on a query selector
+    function removeElementsBySelector(selector) {
+        const elements = document.querySelectorAll(selector);
+        for (let elem of elements) {
+            if (elem) {
+                elem.parentNode.removeChild(elem);
+            }
+        }
     }
     
-    debugLog("Scriptlet started execution.");
+    // Remove unwanted scripts and meta tags
+    const unwantedSources = [
+        "whos.amung.us",
+        "/loadmez/",
+        "sharethis.js",
+        "recaptcha__en.js",
+        "gtag/js",
+        "origin-trial",
+        "recaptchaSiteKey"
+    ];
 
-    // Function to remove elements based on a selector
-    function removeElements(selector) {
-        var elements = document.querySelectorAll(selector);
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].parentNode.removeChild(elements[i]);
+    for (let src of unwantedSources) {
+        removeElementsBySelector(`script[src*="${src}"]`);
+        removeElementsBySelector(`meta[content*="${src}"]`);
+    }
+
+    // Remove inline script containing recaptchaSiteKey
+    const inlineScripts = document.querySelectorAll("script:not([src])");
+    for (let script of inlineScripts) {
+        if (script.textContent.includes("recaptchaSiteKey")) {
+            script.remove();
         }
-        debugLog("Attempted to remove elements with selector: " + selector);
     }
 
-    // Overriding specific functions to noop (no-operation)
-    var noopFunc = function() {};
-    console = {log: noopFunc, error: noopFunc, warn: noopFunc};
-    window._0x1571b1 = noopFunc;
-    debugLog("Overrode console methods and window._0x1571b1 to noop.");
-
-    // Function to handle the main logic
-    function handleMainLogic() {
-        debugLog("Handling main logic after DOMContentLoaded.");
-
-        // Blocking or removing specific scripts and elements
-        var blockedScripts = [
-            'sharethis.com',
-            'coldvain.com',
-            'www.google.com/recaptcha/api.js',
-            'platform-api.sharethis.com',
-            'whos.amung.us'
-        ];
-
-        blockedScripts.forEach(function(src) {
-            removeElements('script[src*="' + src + '"]');
-        });
-
-        // Removing specific elements based on other attributes
-        var otherElements = [
-            'a[href="https://fmovies.to"]',
-            'a[href="https://mangafire.to/"]',
-            'a[href="https://zorohd.to/"]',
-            "meta[http-equiv='origin-trial']"
-        ];
-
-        otherElements.forEach(function(selector) {
-            removeElements(selector);
-        });
-
-        // MutationObserver to watch for DOM changes and remove any newly added unwanted elements/scripts
-        var observer = new MutationObserver(function(mutations) {
-            blockedScripts.concat(otherElements).forEach(function(selector) {
-                removeElements(selector);
-            });
-            debugLog("MutationObserver triggered. Checked for unwanted elements/scripts.");
-        });
-        
-        observer.observe(document, {subtree: true, childList: true});
-        debugLog("Initialized MutationObserver.");
+    // Remove social media links
+    const socialLinks = ["twitter.com", "reddit.com", "discord.com"];
+    for (let link of socialLinks) {
+        removeElementsBySelector(`a[href*="${link}"]`);
     }
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", handleMainLogic);
-    } else {
-        handleMainLogic();
+    // Remove external links
+    const externalLinks = ["fmovies.to", "mangafire.to"];
+    for (let link of externalLinks) {
+        removeElementsBySelector(`a[href*="${link}"]`);
     }
 
-    // Optional: Overriding Constructors (Aggressive and might break the website)
-    window.HTMLScriptElement = noopFunc;
-    debugLog("Overrode window.HTMLScriptElement to noop.");
+    // Enforce the deletions with a MutationObserver to tackle dynamically loaded content
+    const observer = new MutationObserver(mutations => {
+        for (let src of unwantedSources) {
+            removeElementsBySelector(`script[src*="${src}"]`);
+            removeElementsBySelector(`meta[content*="${src}"]`);
+        }
+        for (let script of inlineScripts) {
+            if (script.textContent.includes("recaptchaSiteKey")) {
+                script.remove();
+            }
+        }
+        for (let link of socialLinks) {
+            removeElementsBySelector(`a[href*="${link}"]`);
+        }
+        for (let link of externalLinks) {
+            removeElementsBySelector(`a[href*="${link}"]`);
+        }
+    });
+
+    // Start observing the document with the configured parameters
+    observer.observe(document, { childList: true, subtree: true });
+
+    // Redirect font requests to the new CDN
+    const googleFontsDomains = ["fonts.googleapis.com", "fonts.gstatic.com"];
+    const newCDN = "api.fonts.coollabs.io";
+
+    // Function to replace the href attribute of link tags
+    function replaceFontLinks() {
+        const fontLinks = document.querySelectorAll("link[href^='https://fonts.googleapis.com'], link[href^='https://fonts.gstatic.com']");
+        for (let link of fontLinks) {
+            for (let domain of googleFontsDomains) {
+                if (link.href.includes(domain)) {
+                    link.href = link.href.replace(domain, newCDN);
+                }
+            }
+        }
+    }
+
+    replaceFontLinks();
+
+    // Use MutationObserver to handle dynamically added content
+    const fontObserver = new MutationObserver(mutations => {
+        replaceFontLinks();
+    });
+
+    // Start observing the document with the configured parameters
+    fontObserver.observe(document, { childList: true, subtree: true });
 })();
