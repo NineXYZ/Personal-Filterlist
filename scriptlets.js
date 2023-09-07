@@ -1,19 +1,11 @@
-// Personal Scriptlets
-// This scriptlet will replace the problematic function with a no-op function.
-window._0x1571b1 = function() {};
-
-
-
-
-
-
-// MrBukLau's Scriptlets
-
+// Custom Scriptlets for uBlock
 "use strict";
 
-/**********************/
-/* Generic Scriptlets */
-/**********************/
+/***********************/
+/* MrBukLau's Scriptlets */
+/***********************/
+// Credit: MrBukLau (https://github.com/MrBukLau)
+
 /// bypass-streaming-url-shortener.js
 /// alias bsus.js
 (function() {
@@ -203,4 +195,13 @@ window._0x1571b1 = function() {};
         };
         observer.observe(bodyList, config);
     };
+})();
+
+/***********************/
+/* Custom Scriptlets */
+/***********************/
+
+// Neutralize _0x1571b1 Function
+(function() {
+    window._0x1571b1 = function() {};
 })();
