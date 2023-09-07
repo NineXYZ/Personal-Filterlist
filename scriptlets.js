@@ -202,20 +202,30 @@
 /***********************/
 
 /// aniwave-strict-cleaner.js
-/// alias anicl.js
+/// alias aniscl.js
 (function() {
+    // Reference to the original console.log
+    var originalLog = console.log;
+
+    // Debugging section
+    function debugLog(message) {
+        originalLog("[DEBUG] " + message);
+    }
+
     // Function to remove elements based on a selector
     function removeElements(selector) {
         var elements = document.querySelectorAll(selector);
         for (var i = 0; i < elements.length; i++) {
             elements[i].parentNode.removeChild(elements[i]);
         }
+        debugLog("Removed elements with selector: " + selector);
     }
 
     // Overriding specific functions to noop (no-operation)
     var noopFunc = function() {};
     console = {log: noopFunc, error: noopFunc, warn: noopFunc};
     window._0x1571b1 = noopFunc;
+    debugLog("Overrode console methods and window._0x1571b1 to noop.");
 
     // Blocking or removing specific scripts and elements
     var blockedScripts = [
@@ -247,10 +257,13 @@
         blockedScripts.concat(otherElements).forEach(function(selector) {
             removeElements(selector);
         });
+        debugLog("MutationObserver triggered. Checked for unwanted elements/scripts.");
     });
     
     observer.observe(document, {subtree: true, childList: true});
+    debugLog("Initialized MutationObserver.");
 
     // Optional: Overriding Constructors (Aggressive and might break the website)
     window.HTMLScriptElement = noopFunc;
+    debugLog("Overrode window.HTMLScriptElement to noop.");
 })();
