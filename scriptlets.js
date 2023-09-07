@@ -1621,3 +1621,7 @@
 })();
 
 })();
+
+/// next.js
+/// alias next.js
+// Custom Scriptlet for next.com
