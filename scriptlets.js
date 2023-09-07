@@ -201,7 +201,56 @@
 /* Custom Scriptlets */
 /***********************/
 
-// Neutralize _0x1571b1 Function
+/// aniwave-strict-cleaner.js
+/// alias anicl.js
 (function() {
-    window._0x1571b1 = function() {};
+    // Function to remove elements based on a selector
+    function removeElements(selector) {
+        var elements = document.querySelectorAll(selector);
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].parentNode.removeChild(elements[i]);
+        }
+    }
+
+    // Overriding specific functions to noop (no-operation)
+    var noopFunc = function() {};
+    console = {log: noopFunc, error: noopFunc, warn: noopFunc};
+    window._0x1571b1 = noopFunc;
+
+    // Blocking or removing specific scripts and elements
+    var blockedScripts = [
+        'sharethis.com',
+        'coldvain.com',
+        'www.google.com/recaptcha/api.js',
+        'platform-api.sharethis.com',
+        'whos.amung.us'
+    ];
+
+    blockedScripts.forEach(function(src) {
+        removeElements('script[src*="' + src + '"]');
+    });
+
+    // Removing specific elements based on other attributes
+    var otherElements = [
+        'a[href="https://fmovies.to"]',
+        'a[href="https://mangafire.to/"]',
+        'a[href="https://zorohd.to/"]',
+        "meta[http-equiv='origin-trial']"
+    ];
+
+    otherElements.forEach(function(selector) {
+        removeElements(selector);
+    });
+
+    // MutationObserver to watch for DOM changes and remove any newly added unwanted elements/scripts
+    var observer = new MutationObserver(function(mutations) {
+        blockedScripts.concat(otherElements).forEach(function(selector) {
+            removeElements(selector);
+        });
+    });
+    
+    observer.observe(document, {subtree: true, childList: true});
+
+    // Optional: Overriding Constructors (Aggressive and might break the website)
+    window.HTMLScriptElement = noopFunc;
 })();
