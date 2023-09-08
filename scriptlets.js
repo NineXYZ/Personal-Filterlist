@@ -1622,6 +1622,20 @@
 
 })();
 
+/// decrypt-day-bypass.js
+/// alias ddc.js
+// Custom Scriptlet for decrypt.day
+(function() {
+    // Neutralize gtag function
+    window.gtag = function() {};
+
+    // Neutralize adsbygoogle script
+    window.adsbygoogle = [];
+
+    // Neutralize fundingchoicesmessages script
+    window.signalGooglefcPresent = function() {};
+})();
+
 /// next.js
 /// alias next.js
 // Custom Scriptlet for next.com
