@@ -1667,6 +1667,38 @@
     };
 })();
 
+/// google-mimic.js
+/// alias ggmimic.js
+// Custom Scriptlet to mimic ad scripts for decrypt.day
+(function() {
+    // Mimic adsbygoogle functionality
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.loaded = true;
+    window.adsbygoogle.push = function() { return true; };
+    window.adsbygoogle.requestNonPersonalizedAds = 1;
+
+    // Mock for Google Tag Manager
+    window.gtag = function() {};
+
+    // Mock for Funding Choices
+    window.__googlefc = window.__googlefc || {};
+    window.__googlefc.callbackQueue = [];
+    window.__googlefc.callbackQueue.push = function() {};
+    window.__googlefc.loaded = true;
+
+    // Mock for show_ads_impl functionality
+    window.google_sa_impl = function() { return true; };
+    window.google_jobrunner = window.google_jobrunner || {};
+    window.google_jobrunner.ready = function() { return true; };
+
+    // Neutralize any real XMLHttpRequest or fetch calls to avoid actual network communication
+    XMLHttpRequest.prototype.open = function() { return null; };
+    window.fetch = function() { return new Promise(function(){}); };
+
+    // Additional mocks based on deeper script behavior can be added here
+})();
+
+
 /// next.js
 /// alias next.js
 // Custom Scriptlet for next.com
