@@ -1640,7 +1640,9 @@
     // Intercept XMLHttpRequests to mock successful responses for ad-related requests
     const originalOpen = XMLHttpRequest.prototype.open;
     XMLHttpRequest.prototype.open = function(method, url) {
-        if (url.includes('adsbygoogle.js') || url.includes('fundingchoicesmessages.google.com')) {
+        if (url.includes('adsbygoogle.js?client=ca-pub-7963386435348203') || 
+            url.includes('fundingchoicesmessages.google.com/i/pub-7963386435348203?ers=1') ||
+            url.includes('www.googletagmanager.com/gtag/js')) {
             this.addEventListener('readystatechange', function() {
                 if (this.readyState === XMLHttpRequest.DONE) {
                     this.responseText = '200 OK';  // Mocking the response text
@@ -1651,10 +1653,12 @@
         return originalOpen.apply(this, arguments);
     };
 
-    // If the site uses the fetch API, we'll need to mock that as well
+    // Mock fetch API for the identified URLs
     const originalFetch = window.fetch;
     window.fetch = function(url, options) {
-        if (url.includes('adsbygoogle.js') || url.includes('fundingchoicesmessages.google.com')) {
+        if (url.includes('adsbygoogle.js?client=ca-pub-7963386435348203') || 
+            url.includes('fundingchoicesmessages.google.com/i/pub-7963386435348203?ers=1') ||
+            url.includes('www.googletagmanager.com/gtag/js')) {
             return new Promise(resolve => {
                 resolve(new Response('200 OK', { status: 200, statusText: 'OK' }));
             });
