@@ -1623,18 +1623,21 @@
 })();
 
 /// decrypt-day-bypass.js
-/// alias ddc.js
+/// alias ddb.js
 // Custom Scriptlet for decrypt.day
 (function() {
     // Neutralize gtag function
     window.gtag = function() {};
 
     // Neutralize adsbygoogle script
-    window.adsbygoogle = [];
+    window.adsbygoogle = window.adsbygoogle || [];
+    window.adsbygoogle.loaded = true;
+    window.adsbygoogle.push = function() {};
 
     // Neutralize fundingchoicesmessages script
     window.signalGooglefcPresent = function() {};
 })();
+
 
 /// next.js
 /// alias next.js
