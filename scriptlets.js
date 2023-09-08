@@ -1636,8 +1636,17 @@
 
     // Neutralize fundingchoicesmessages script
     window.signalGooglefcPresent = function() {};
-})();
 
+    // Neutralize event listeners that might trigger ad-blocker detection
+    const originalAddEventListener = EventTarget.prototype.addEventListener;
+    EventTarget.prototype.addEventListener = function(type, listener, options) {
+        // If the event type or listener matches known patterns related to ad-block detection, skip adding the listener
+        if (type === 'error' && String(listener).includes('You are seeing this message because ad or script blocking software')) {
+            return;
+        }
+        return originalAddEventListener.apply(this, arguments);
+    };
+})();
 
 /// next.js
 /// alias next.js
