@@ -1637,18 +1637,31 @@
     // Neutralize fundingchoicesmessages script
     window.signalGooglefcPresent = function() {};
 
-    // Neutralize potential event listeners from the id1599719154_decrypt file
-    const originalAddEventListener = EventTarget.prototype.addEventListener;
-    EventTarget.prototype.addEventListener = function(type, listener, options) {
-        // If the event type or listener matches known patterns related to ad-block detection, skip adding the listener
-        if (type === 'error' && (String(listener).includes('You are seeing this message because ad or script blocking software') || 
-                                 String(listener).includes('ad blocker'))) {
-            return;
+    // Intercept XMLHttpRequests to mock successful responses for ad-related requests
+    const originalOpen = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function(method, url) {
+        if (url.includes('adsbygoogle.js') || url.includes('fundingchoicesmessages.google.com')) {
+            this.addEventListener('readystatechange', function() {
+                if (this.readyState === XMLHttpRequest.DONE) {
+                    this.responseText = '200 OK';  // Mocking the response text
+                    this.status = 200;            // Mocking a successful status code
+                }
+            });
         }
-        return originalAddEventListener.apply(this, arguments);
+        return originalOpen.apply(this, arguments);
+    };
+
+    // If the site uses the fetch API, we'll need to mock that as well
+    const originalFetch = window.fetch;
+    window.fetch = function(url, options) {
+        if (url.includes('adsbygoogle.js') || url.includes('fundingchoicesmessages.google.com')) {
+            return new Promise(resolve => {
+                resolve(new Response('200 OK', { status: 200, statusText: 'OK' }));
+            });
+        }
+        return originalFetch.apply(this, arguments);
     };
 })();
-
 
 /// next.js
 /// alias next.js
